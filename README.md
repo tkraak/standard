@@ -144,7 +144,7 @@ An abstract example:
 
 Here's a more specific example. We require the plugins in `app.js`, then create the `markdownPlugins` object as part of our `reshape` config.
 
-```
+```js
 const htmlStandards = require('reshape-standard')
 const cssStandards = require('spike-css-standards')
 const jsStandards = require('babel-preset-env')
