@@ -136,13 +136,9 @@ This reshape plugin uses [markdown-it](https://github.com/markdown-it/markdown-i
 
 Many markdown-it plugins accept options as well. Typically, plugins revert to a default set of options if no options are explicitly passed.
 
-Plugins should be added to your `app.js` file, passed via `markdownPlugins:` as array of plugins, with or without options.
+Plugins should be added to your `app.js` file, passed via `markdownPlugins:` as an array of plugins, with or without options.
 
-An abstract example:
-
-`markdownPlugins: [ [markdownPlugin, { option: true, option2: 2 }], markdownPluginWithoutOptions, [anotherMarkdownPlugin, { option: cool, coffee: 'yes' }] ]`
-
-Here's a more specific example. We require the plugins in `app.js`, then create the `markdownPlugins` object as part of our `reshape` config.
+Here's a specific example. We require the plugins in `app.js`, then create the `markdownPlugins` key as part of our `reshape` config.
 
 ```js
 const htmlStandards = require('reshape-standard')
@@ -162,7 +158,10 @@ module.exports = {
   ignore: ['**/layout.sgr', '**/_*', '**/.*', '_cache/**', 'readme.md', 'yarn.lock'],
   reshape: htmlStandards({
     locals: (ctx) => { return { pageId: pageId(ctx) } },
-    markdownPlugins: [ [markdownItAnchor, {permalink: true, permalinkSymbol: '#'}], [markdownItTable, {includeLevel: [1,2,3,4,5,6]}], markdownEmoji ]
+    markdownPlugins: [
+      [markdownItAnchor, {permalink: true, permalinkSymbol: '#'}], [markdownItTable, {includeLevel: [1,2,3,4,5,6]}],
+      markdownEmoji 
+    ]
   }),
   postcss: cssStandards(),
   babel: { presets: [[jsStandards, { modules: false }]] }
